@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MPG Designathon — May 6</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&family=Jersey+10&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black: #0a0a0a;
+    --white: #ffffff;
+    --accent: #3cb043;
+    --mid: #141414;
+    --rule: rgba(255,255,255,0.1);
+  }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem 1.5rem;
+  }
+
+  .card {
+    width: 100%;
+    max-width: 640px;
+    background: var(--mid);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 40px 80px rgba(0,0,0,0.6);
+  }
+
+  .header {
+    background: linear-gradient(135deg, #4ec456 0%, #3cb043 50%, #5dd665 100%);
+    padding: 2.94rem 2.5rem;
+    position: relative;
+    overflow: hidden;
+    min-height: 220px;
+    display: flex;
+    align-items: center;
+  }
+
+  .header canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.9;
+    pointer-events: none;
+  }
+
+  .header-content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+  }
+
+
+  .eyebrow {
+    font-size: 1.75rem;
+    font-weight: 500;
+    font-family: 'Jersey 10', sans-serif;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(0,0,0,0.55);
+    margin-bottom: 0.6rem;
+  }
+
+  .title {
+    font-family: 'Jersey 10', sans-serif;
+    font-size: 5.7rem;
+    line-height: 0.82;
+    color: #0e0e0e;
+    letter-spacing: 0.01em;
+  }
+
+  .meta {
+    display: flex;
+    gap: 2rem;
+    margin-top: 1.4rem;
+    flex-wrap: nowrap;
+    align-items: flex-start;
+  }
+
+  .meta-item {
+    font-size: 0.72rem;
+    font-weight: 500;
+    color: rgba(0,0,0,0.6);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .meta-item strong {
+    display: block;
+    font-size: 0.88rem;
+    color: #0e0e0e;
+    font-weight: 500;
+    letter-spacing: 0;
+    text-transform: none;
+    margin-top: 0.15rem;
+    white-space: nowrap;
+  }
+
+  .schedule {
+    padding: 0 2.5rem 2rem;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.8rem 0 1rem;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .section-label {
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  .rules-btn {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 2px;
+    padding: 0.3em 0.7em;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .rules-btn:hover {
+    color: var(--white);
+    background: rgba(255,255,255,0.09);
+    border-color: rgba(255,255,255,0.2);
+  }
+
+  .row {
+    display: grid;
+    grid-template-columns: 110px 1fr;
+    gap: 1rem;
+    padding: 1.2rem 0;
+    border-bottom: 1px solid var(--rule);
+    align-items: start;
+    animation: fadeUp 0.5s ease both;
+  }
+
+  .row:last-child { border-bottom: none; }
+
+  .time {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.15rem;
+    color: rgba(255,255,255,0.3);
+    letter-spacing: 0.04em;
+    padding-top: 0.05rem;
+  }
+
+  .block { display: flex; flex-direction: column; gap: 0.2rem; }
+
+  .block-title {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--white);
+    line-height: 1.3;
+  }
+
+  .block-note {
+    font-size: 0.78rem;
+    font-weight: 300;
+    color: rgba(255,255,255,0.4);
+    line-height: 1.4;
+  }
+
+  .badge {
+    display: inline-block;
+    background: rgba(60,176,67,0.15);
+    color: var(--accent);
+    font-size: 0.62rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.2em 0.55em;
+    border-radius: 2px;
+    margin-top: 0.3rem;
+    width: fit-content;
+  }
+
+  .badge.food {
+    background: rgba(255,255,255,0.06);
+    color: rgba(255,255,255,0.45);
+  }
+
+  /* Modal */
+  .overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.75);
+    backdrop-filter: blur(4px);
+    z-index: 100;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+  }
+
+  .overlay.open { display: flex; animation: fadeIn 0.2s ease; }
+
+  .modal {
+    background: #1a1a1a;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 4px;
+    width: 100%;
+    max-width: 540px;
+    max-height: 85vh;
+    overflow-y: auto;
+    box-shadow: 0 40px 80px rgba(0,0,0,0.7);
+    animation: slideUp 0.25s ease;
+  }
+
+  .modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.5rem 1.8rem 1.2rem;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    position: sticky;
+    top: 0;
+    background: #1a1a1a;
+    z-index: 1;
+  }
+
+  .modal-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.6rem;
+    color: var(--white);
+    letter-spacing: 0.04em;
+  }
+
+  .modal-close {
+    background: none;
+    border: none;
+    color: rgba(255,255,255,0.35);
+    font-size: 1.4rem;
+    cursor: pointer;
+    line-height: 1;
+    padding: 0.2rem;
+    transition: color 0.15s;
+  }
+
+  .modal-close:hover { color: var(--white); }
+
+  .modal-body {
+    padding: 1.5rem 1.8rem 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.4rem;
+  }
+
+  .rule { display: flex; gap: 1rem; align-items: start; }
+
+  .rule-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem;
+    color: var(--accent);
+    line-height: 1;
+    min-width: 1.6rem;
+    padding-top: 0.1rem;
+  }
+
+  .rule-title {
+    font-size: 0.88rem;
+    font-weight: 500;
+    color: var(--white);
+    margin-bottom: 0.25rem;
+  }
+
+  .rule-text {
+    font-size: 0.8rem;
+    font-weight: 300;
+    color: rgba(255,255,255,0.45);
+    line-height: 1.6;
+  }
+
+  .footer-note {
+    font-size: 0.75rem;
+    font-weight: 400;
+    color: rgba(255,255,255,0.35);
+    padding: 1rem 2.5rem 1.5rem;
+    border-top: 1px solid var(--rule);
+    line-height: 1.5;
+  }
+
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .row:nth-child(1) { animation-delay: 0.05s; }
+  .row:nth-child(2) { animation-delay: 0.1s; }
+  .row:nth-child(3) { animation-delay: 0.15s; }
+  .row:nth-child(4) { animation-delay: 0.2s; }
+  .row:nth-child(5) { animation-delay: 0.25s; }
+  .row:nth-child(6) { animation-delay: 0.3s; }
+</style>
+</head>
+<body>
+
+<div class="overlay" id="overlay" onclick="closeModal(event)">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title">The Rundown</div>
+      <button class="modal-close" onclick="document.getElementById('overlay').classList.remove('open')">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div class="rule">
+        <div class="rule-num">1</div>
+        <div class="rule-content">
+          <div class="rule-title">Come with a plan.</div>
+          <div class="rule-text">Once pairs are announced, connect with your partner on Slack before the event. Align on an idea — or a shortlist — so you're ready to build when the day kicks off, not still brainstorming at 9:15.</div>
+        </div>
+      </div>
+      <div class="rule">
+        <div class="rule-num">2</div>
+        <div class="rule-content">
+          <div class="rule-title">Hit the ground running.</div>
+          <div class="rule-text">The build window starts at 9:00. Use it. If you already got a head start with your partner before the event, keep going. If you're starting fresh that morning, that works too.</div>
+        </div>
+      </div>
+      <div class="rule">
+        <div class="rule-num">3</div>
+        <div class="rule-content">
+          <div class="rule-title">Build more than one thing if you want.</div>
+          <div class="rule-text">Finish early? Start something new. There's no cap on what you can build — the only rule is that you have something to show at 3:00.</div>
+        </div>
+      </div>
+      <div class="rule">
+        <div class="rule-num">4</div>
+        <div class="rule-content">
+          <div class="rule-title">Use whatever tools you want.</div>
+          <div class="rule-text">Design software, frameworks, AI tools, no-code — whatever helps you build the best proof of concept. No restrictions.</div>
+        </div>
+      </div>
+      <div class="rule">
+        <div class="rule-num">5</div>
+        <div class="rule-content">
+          <div class="rule-title">Keep it presentable.</div>
+          <div class="rule-text">It doesn't need to be polished, but it should be explainable. At 3:00 you'll walk the group through what you built, what problem it solves, and what it could become.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="header">
+    <canvas id="headerCanvas"></canvas>
+    <div class="header-content">
+      <div class="eyebrow">2nd Annual</div>
+      <div class="title">MPG Designathon</div>
+      <div class="meta">
+        <div class="meta-item">Date <strong>Wednesday, May 6</strong></div>
+        <div class="meta-item">Location <strong>Conference Room 3A</strong></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="schedule">
+    <div class="section-header">
+      <div class="section-label">Schedule</div>
+      <button class="rules-btn" onclick="document.getElementById('overlay').classList.add('open')">The Rundown →</button>
+    </div>
+
+    <div class="row">
+      <div class="time">8:30 AM</div>
+      <div class="block">
+        <div class="block-title">Breakfast &amp; Kickoff</div>
+        <div class="badge food">🥯 Breakfast provided</div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="time">9:00 – 12:00</div>
+      <div class="block">
+        <div class="block-title">Build Block I</div>
+        <div class="block-note">Go from idea to working proof of concept — better VSLs, smarter order forms, reimagined mobile experiences, improved funnels… whatever you've been itching to try</div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="time">12:00 PM</div>
+      <div class="block">
+        <div class="block-title">Lunch Break</div>
+        <div class="badge food">🥗 Lunch provided</div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="time">1:00 – 3:00</div>
+      <div class="block">
+        <div class="block-title">Build Block II</div>
+        <div class="block-note">Polish, iterate, and get your presentation ready — no design requests, no deadlines, no rules. Use any tools you want</div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="time">3:00 – 4:00</div>
+      <div class="block">
+        <div class="block-title">Presentations</div>
+        <div class="block-note">Each team shares what they built — the goal is walking away with great ideas to test in the coming months</div>
+        <div class="badge">All hands</div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="time">After 4:00</div>
+      <div class="block">
+        <div class="block-title">Happy Hour 🍻</div>
+        <div class="block-note">Owl Bar to decompress with some drinks and apps</div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+  const canvas = document.getElementById('headerCanvas');
+  const ctx = canvas.getContext('2d');
+
+  function resize() {
+    const header = canvas.parentElement;
+    canvas.width = header.offsetWidth;
+    canvas.height = header.offsetHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  let t = 0;
+
+  function draw() {
+    const w = canvas.width;
+    const h = canvas.height;
+    ctx.clearRect(0, 0, w, h);
+
+    // Geometric lines
+    ctx.save();
+    const lineCount = 8;
+    for (let i = 0; i < lineCount; i++) {
+      const progress = i / lineCount;
+      const x = w * progress + (w * 0.15 * Math.sin(t * 0.0008 + i * 0.7));
+      ctx.beginPath();
+      ctx.moveTo(x, 0);
+      ctx.lineTo(x - h * 0.4, h);
+      ctx.strokeStyle = `rgba(255,255,255,${0.25 + 0.12 * Math.sin(t * 0.001 + i)})`;
+      ctx.lineWidth = 1.5;
+      ctx.stroke();
+    }
+    const hLineCount = 4;
+    for (let i = 0; i < hLineCount; i++) {
+      const progress = i / hLineCount;
+      const y = h * progress + (h * 0.1 * Math.sin(t * 0.0006 + i * 1.2));
+      ctx.beginPath();
+      ctx.moveTo(0, y);
+      ctx.lineTo(w, y);
+      ctx.strokeStyle = `rgba(255,255,255,${0.18 + 0.08 * Math.sin(t * 0.0009 + i)})`;
+      ctx.lineWidth = 1.5;
+      ctx.stroke();
+    }
+    ctx.restore();
+
+    t += 1;
+    requestAnimationFrame(draw);
+  }
+
+  draw();
+
+  function closeModal(e) {
+    if (e.target === document.getElementById('overlay')) {
+      document.getElementById('overlay').classList.remove('open');
+    }
+  }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') document.getElementById('overlay').classList.remove('open');
+  });
+</script>
+</body>
+</html>
