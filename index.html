@@ -15,7 +15,90 @@
     --mid: #141414;
     --rule: rgba(255,255,255,0.1);
   }
+.teams {
+  padding: 0 2.5rem 2.5rem;
+}
 
+.team-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  margin-top: 0;
+}
+
+.team-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 4px;
+  padding: 1rem 1.1rem;
+}
+
+.team-card.remote {
+  grid-column: 1 / -1;
+  background: rgba(60,176,67,0.06);
+  border-color: rgba(60,176,67,0.15);
+}
+
+.team-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 0.95rem;
+  color: var(--accent);
+  letter-spacing: 0.08em;
+  margin-bottom: 0.6rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.remote-tag {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.6rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  background: rgba(60,176,67,0.2);
+  color: var(--accent);
+  padding: 0.15em 0.5em;
+  border-radius: 2px;
+}
+
+.team-members {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.member {
+  font-size: 0.82rem;
+  font-weight: 400;
+  color: rgba(255,255,255,0.7);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.member.dev {
+  color: rgba(255,255,255,0.95);
+  font-weight: 500;
+}
+
+.dev-tag {
+  font-size: 0.58rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  background: rgba(255,255,255,0.1);
+  color: rgba(255,255,255,0.45);
+  padding: 0.15em 0.45em;
+  border-radius: 2px;
+}
+
+@media (max-width: 480px) {
+  .title { font-size: 3.2rem; }
+  .eyebrow { font-size: 1.1rem; }
+  .team-grid { grid-template-columns: 1fr; }
+  .team-card.remote { grid-column: 1; }
+}
   body {
     background: var(--black);
     color: var(--white);
@@ -450,6 +533,63 @@
 
   </div>
 
+</div>
+ <div class="teams">
+  <div class="section-header">
+    <div class="section-label">Teams</div>
+  </div>
+  <div class="team-grid">
+
+    <div class="team-card">
+      <div class="team-num">Group 1</div>
+      <div class="team-members">
+        <div class="member dev">Tiana <span class="dev-tag">dev</span></div>
+        <div class="member">Anthony</div>
+        <div class="member">Katie</div>
+        <div class="member">Jason</div>
+      </div>
+    </div>
+
+    <div class="team-card">
+      <div class="team-num">Group 2</div>
+      <div class="team-members">
+        <div class="member dev">Ali <span class="dev-tag">dev</span></div>
+        <div class="member">Erica</div>
+        <div class="member">Jeremy</div>
+        <div class="member">Ricky</div>
+      </div>
+    </div>
+
+    <div class="team-card">
+      <div class="team-num">Group 3</div>
+      <div class="team-members">
+        <div class="member dev">Claudia <span class="dev-tag">dev</span></div>
+        <div class="member">Jack</div>
+        <div class="member">Chelsea</div>
+        <div class="member">Niall</div>
+      </div>
+    </div>
+
+    <div class="team-card">
+      <div class="team-num">Group 4</div>
+      <div class="team-members">
+        <div class="member dev">Brandon <span class="dev-tag">dev</span></div>
+        <div class="member">Paula</div>
+        <div class="member">Gus</div>
+        <div class="member">Stephanie</div>
+      </div>
+    </div>
+
+    <div class="team-card remote">
+      <div class="team-num">Group 5 <span class="remote-tag">Remote</span></div>
+      <div class="team-members">
+        <div class="member">David</div>
+        <div class="member">Justin</div>
+        <div class="member">Colleen</div>
+      </div>
+    </div>
+
+  </div>
 </div>
 
 <script>
