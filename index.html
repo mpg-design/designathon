@@ -15,96 +15,7 @@
     --mid: #141414;
     --rule: rgba(255,255,255,0.1);
   }
-.teams {
-  padding: 0 0 2.5rem;
-}
- @media (max-width: 600px) {
-  .meta { flex-direction: column; gap: 0.6rem; }
-  .meta-item strong { white-space: normal; }
-}
- @media (max-width: 480px) {
-  .team-num {
-    flex-wrap: wrap;
-  }
-}
- @media (max-width: 480px) {
-  .teams { padding: 0 1rem 1.5rem; }
-  .team-grid { gap: 0.5rem; }
-}
 
-.team-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0.75rem;
-  margin-top: 0;
-}
-
-.team-card {
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.07);
-  border-radius: 4px;
-  padding: 1rem 1.1rem;
-}
-
-.team-card.remote {
-  background: rgba(60,176,67,0.06);
-  border-color: rgba(60,176,67,0.15);
-}
-
-.team-num {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 0.95rem;
-  color: var(--accent);
-  letter-spacing: 0.08em;
-  margin-bottom: 0.6rem;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.remote-tag {
-  font-family: 'DM Sans', sans-serif;
-  font-size: 0.6rem;
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  background: rgba(60,176,67,0.2);
-  color: var(--accent);
-  padding: 0.15em 0.5em;
-  border-radius: 2px;
-}
-
-.team-members {
-  display: flex;
-  flex-direction: column;
-  gap: 0.3rem;
-}
-
-.member {
-  font-size: 0.82rem;
-  font-weight: 400;
-  color: rgba(255,255,255,0.7);
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-}
-
-.member.dev {
-  color: rgba(255,255,255,0.95);
-  font-weight: 500;
-}
-
-.dev-tag {
-  font-size: 0.58rem;
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  background: rgba(255,255,255,0.1);
-  color: rgba(255,255,255,0.45);
-  padding: 0.15em 0.45em;
-  border-radius: 2px;
-
-}
   body {
     background: var(--black);
     color: var(--white);
@@ -154,7 +65,6 @@
     height: 100%;
   }
 
-
   .eyebrow {
     font-size: 1.75rem;
     font-weight: 500;
@@ -177,7 +87,7 @@
     display: flex;
     gap: 2rem;
     margin-top: 1.4rem;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
     align-items: flex-start;
   }
 
@@ -187,7 +97,6 @@
     color: rgba(0,0,0,0.6);
     letter-spacing: 0.04em;
     text-transform: uppercase;
-     white-space: nowrap
   }
 
   .meta-item strong {
@@ -197,9 +106,44 @@
     font-weight: 500;
     letter-spacing: 0;
     text-transform: none;
-     margin-top: 0.15rem;
+    margin-top: 0.15rem;
   }
 
+  /* Tabs */
+  .tabs {
+    display: flex;
+    border-bottom: 1px solid var(--rule);
+    padding: 0 2.5rem;
+    gap: 0;
+  }
+
+  .tab-btn {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.35);
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    padding: 1.2rem 1rem 1rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-bottom: -1px;
+  }
+
+  .tab-btn:hover { color: rgba(255,255,255,0.7); }
+
+  .tab-btn.active {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+  }
+
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+  /* Schedule */
   .schedule {
     padding: 0 2.5rem 2rem;
   }
@@ -296,6 +240,163 @@
     color: rgba(255,255,255,0.45);
   }
 
+  /* Teams */
+  .teams {
+    padding: 0 0 2.5rem;
+  }
+
+  .team-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    margin-top: 0;
+  }
+
+  .team-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 4px;
+    padding: 1rem 1.1rem;
+  }
+
+  .team-card.remote {
+    grid-column: 1 / -1;
+    background: rgba(60,176,67,0.06);
+    border-color: rgba(60,176,67,0.15);
+  }
+
+  .team-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 0.95rem;
+    color: var(--accent);
+    letter-spacing: 0.08em;
+    margin-bottom: 0.6rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .remote-tag {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.6rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    background: rgba(60,176,67,0.2);
+    color: var(--accent);
+    padding: 0.15em 0.5em;
+    border-radius: 2px;
+  }
+
+  .team-members {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+
+  .member {
+    font-size: 0.82rem;
+    font-weight: 400;
+    color: rgba(255,255,255,0.7);
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .member.dev {
+    color: rgba(255,255,255,0.95);
+    font-weight: 500;
+  }
+
+  .dev-tag {
+    font-size: 0.58rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    background: rgba(255,255,255,0.1);
+    color: rgba(255,255,255,0.45);
+    padding: 0.15em 0.45em;
+    border-radius: 2px;
+  }
+
+  /* Details panel */
+  .details {
+    padding: 1.8rem 2.5rem 2.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.6rem;
+  }
+
+  .detail-block {}
+
+  .detail-label {
+    font-size: 0.62rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+  }
+
+  .detail-text {
+    font-size: 0.85rem;
+    font-weight: 400;
+    color: rgba(255,255,255,0.75);
+    line-height: 1.6;
+  }
+
+  .detail-text strong {
+    color: var(--white);
+    font-weight: 500;
+  }
+
+  .detail-note {
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.4);
+    line-height: 1.5;
+    margin-top: 0.3rem;
+  }
+
+  .directions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    margin-top: 0.3rem;
+  }
+
+  .direction-item {
+    display: flex;
+    gap: 0.75rem;
+    align-items: start;
+  }
+
+  .direction-icon {
+    font-size: 0.8rem;
+    margin-top: 0.15rem;
+    min-width: 1rem;
+  }
+
+  .direction-text {
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.55;
+  }
+
+  .direction-text strong {
+    color: rgba(255,255,255,0.9);
+    font-weight: 500;
+    display: block;
+    margin-bottom: 0.15rem;
+  }
+
+  .valet-box {
+    background: rgba(60,176,67,0.07);
+    border: 1px solid rgba(60,176,67,0.15);
+    border-radius: 4px;
+    padding: 0.9rem 1.1rem;
+  }
+
   /* Modal */
   .overlay {
     display: none;
@@ -387,22 +488,16 @@
     line-height: 1.6;
   }
 
-  .footer-note {
-    font-size: 0.75rem;
-    font-weight: 400;
-    color: rgba(255,255,255,0.35);
-    padding: 1rem 2.5rem 1.5rem;
-    border-top: 1px solid var(--rule);
-    line-height: 1.5;
+  @media (max-width: 480px) {
+    .title { font-size: 3.2rem; }
+    .eyebrow { font-size: 1.1rem; }
+    .teams { padding: 0 0 1.5rem; }
+    .team-grid { gap: 0.5rem; }
+    .tabs { padding: 0 1.5rem; }
+    .schedule { padding: 0 1.5rem 2rem; }
+    .details { padding: 1.5rem 1.5rem 2rem; }
   }
-@media (max-width: 480px) {
-  .title {
-    font-size: 3.2rem;
-  }
-  .eyebrow {
-    font-size: 1.1rem;
-  }
-}
+
   @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
   @keyframes slideUp {
     from { opacity: 0; transform: translateY(16px); }
@@ -482,124 +577,197 @@
     </div>
   </div>
 
-  <div class="schedule">
-    <div class="section-header">
-      <div class="section-label">Rough Schedule</div>
-      <button class="rules-btn" onclick="document.getElementById('overlay').classList.add('open')">The Rundown →</button>
-    </div>
-
-    <div class="row">
-      <div class="time">8:30 AM</div>
-      <div class="block">
-        <div class="block-title">Breakfast &amp; Kickoff</div>
-        <div class="badge">🥯 Breakfast provided</div>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="time">9:00 – 12:00</div>
-      <div class="block">
-        <div class="block-title">Build Block I</div>
-        <div class="block-note">Go from idea to working proof of concept — better VSLs, smarter order forms, reimagined mobile experiences, improved funnels… whatever you've been itching to try</div>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="time">12:00 PM</div>
-      <div class="block">
-        <div class="block-title">Lunch Break & Check In</div>
-        <div class="badge">🥗 Lunch provided</div>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="time">1:00 – 3:00</div>
-      <div class="block">
-        <div class="block-title">Build Block II</div>
-        <div class="block-note">Polish, iterate, and get your presentation ready — no design requests, no deadlines, no rules. Use any tools you want</div>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="time">3:00 – 4:00</div>
-      <div class="block">
-        <div class="block-title">Presentations</div>
-        <div class="block-note">Each team shares what they built — the goal is walking away with great ideas to test in the coming months</div>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="time">After 4:00</div>
-      <div class="block">
-        <div class="block-title">Happy Hour 🍻</div>
-        <div class="block-note">TBD</div>
-      </div>
-    </div>
- <div class="teams">
-  <div class="section-header">
-    <div class="section-label">Groups</div>
+  <!-- Tabs -->
+  <div class="tabs">
+    <button class="tab-btn active" onclick="switchTab('schedule', this)">Schedule</button>
+    <button class="tab-btn" onclick="switchTab('groups', this)">Groups</button>
+    <button class="tab-btn" onclick="switchTab('details', this)">Details</button>
   </div>
-  <div class="team-grid">
 
-    <div class="team-card">
-      <div class="team-num">Group 1</div>
-      <div class="team-members">
-        <div class="member dev">Tiana <span class="dev-tag">dev</span></div>
-        <div class="member dev">Allison <span class="dev-tag">dev</span></div>
-        <div class="member">Anthony</div>
-        <div class="member">Katie</div>
-        <div class="member">Jason</div>
+  <!-- Schedule Tab -->
+  <div class="tab-panel active" id="tab-schedule">
+    <div class="schedule">
+      <div class="section-header">
+        <div class="section-label">Rough Schedule</div>
+        <button class="rules-btn" onclick="document.getElementById('overlay').classList.add('open')">The Rundown →</button>
+      </div>
+
+      <div class="row">
+        <div class="time">8:30 AM</div>
+        <div class="block">
+          <div class="block-title">Breakfast &amp; Kickoff</div>
+          <div class="badge food">🥯 Breakfast provided</div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="time">9:00 – 12:00</div>
+        <div class="block">
+          <div class="block-title">Build Block I</div>
+          <div class="block-note">Go from idea to working proof of concept — better VSLs, smarter order forms, reimagined mobile experiences, improved funnels… whatever you've been itching to try</div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="time">12:00 PM</div>
+        <div class="block">
+          <div class="block-title">Lunch Break &amp; Check In</div>
+          <div class="badge food">🥗 Lunch provided</div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="time">1:00 – 3:00</div>
+        <div class="block">
+          <div class="block-title">Build Block II</div>
+          <div class="block-note">Polish, iterate, and get your presentation ready — no design requests, no deadlines, no rules. Use any tools you want</div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="time">3:00 – 4:00</div>
+        <div class="block">
+          <div class="block-title">Presentations</div>
+          <div class="block-note">Each team shares what they built — the goal is walking away with great ideas to test in the coming months</div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="time">After 4:00</div>
+        <div class="block">
+          <div class="block-title">Happy Hour 🍻</div>
+          <div class="block-note">TBD</div>
+        </div>
       </div>
     </div>
-
-    <div class="team-card">
-      <div class="team-num">Group 2</div>
-      <div class="team-members">
-        <div class="member dev">Ali <span class="dev-tag">dev</span></div>
-        <div class="member">Erica</div>
-        <div class="member">Jeremy</div>
-        <div class="member">Ricky</div>
-      </div>
-    </div>
-
-    <div class="team-card">
-      <div class="team-num">Group 3</div>
-      <div class="team-members">
-        <div class="member dev">Claudia <span class="dev-tag">dev</span></div>
-        <div class="member">Jack</div>
-        <div class="member">Chelsea</div>
-        <div class="member">Niall</div>
-      </div>
-    </div>
-
-    <div class="team-card">
-      <div class="team-num">Group 4</div>
-      <div class="team-members">
-        <div class="member dev">Brandon <span class="dev-tag">dev</span></div>
-        <div class="member">Paula</div>
-        <div class="member">Gus</div>
-        <div class="member">Stephanie</div>
-      </div>
-    </div>
-
-    <div class="team-card remote">
-      <div class="team-num">Group 5 <span class="remote-tag">Remote</span></div>
-      <div class="team-members">
-       <div class="member">Brady</div>
-       <div class="member">Colleen</div>
-       <div class="member">Justin</div>
-       <div class="member">David</div>
-
-      </div>
-    </div>
-
   </div>
-</div>
+
+  <!-- Groups Tab -->
+  <div class="tab-panel" id="tab-groups">
+    <div class="schedule">
+      <div class="teams">
+        <div class="section-header" style="padding-top: 1.8rem;">
+          <div class="section-label">Groups</div>
+        </div>
+        <div class="team-grid" style="margin-top: 1rem;">
+
+          <div class="team-card">
+            <div class="team-num">Group 1</div>
+            <div class="team-members">
+              <div class="member dev">Tiana <span class="dev-tag">dev</span></div>
+              <div class="member dev">Allison <span class="dev-tag">dev</span></div>
+              <div class="member">Anthony</div>
+              <div class="member">Katie</div>
+              <div class="member">Jason</div>
+            </div>
+          </div>
+
+          <div class="team-card">
+            <div class="team-num">Group 2</div>
+            <div class="team-members">
+              <div class="member dev">Ali <span class="dev-tag">dev</span></div>
+              <div class="member">Erica</div>
+              <div class="member">Jeremy</div>
+              <div class="member">Ricky</div>
+            </div>
+          </div>
+
+          <div class="team-card">
+            <div class="team-num">Group 3</div>
+            <div class="team-members">
+              <div class="member dev">Claudia <span class="dev-tag">dev</span></div>
+              <div class="member">Jack</div>
+              <div class="member">Chelsea</div>
+              <div class="member">Niall</div>
+            </div>
+          </div>
+
+          <div class="team-card">
+            <div class="team-num">Group 4</div>
+            <div class="team-members">
+              <div class="member dev">Brandon <span class="dev-tag">dev</span></div>
+              <div class="member">Paula</div>
+              <div class="member">Gus</div>
+              <div class="member">Stephanie</div>
+            </div>
+          </div>
+
+          <div class="team-card remote">
+            <div class="team-num">Group 5 <span class="remote-tag">Remote</span></div>
+            <div class="team-members">
+              <div class="member">Brady</div>
+              <div class="member">Colleen</div>
+              <div class="member">Justin</div>
+              <div class="member">David</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Details Tab -->
+  <div class="tab-panel" id="tab-details">
+    <div class="details">
+
+      <div class="detail-block">
+        <div class="detail-label">Location</div>
+        <div class="detail-text"><strong>Four Seasons Hotel Baltimore</strong></div>
+        <div class="detail-note">200 International Drive, Baltimore, MD 21202</div>
+      </div>
+
+      <div class="detail-block">
+        <div class="detail-label">Date &amp; Time</div>
+        <div class="detail-text"><strong>Wednesday, May 6th</strong></div>
+        <div class="detail-note">8:30 AM – 4:00 PM · Breakfast and lunch provided · Vegetarian options available</div>
+      </div>
+
+      <div class="detail-block">
+        <div class="detail-label">Meeting Room</div>
+        <div class="detail-text"><strong>Viridian Room</strong> — 4th Floor</div>
+      </div>
+
+      <div class="detail-block">
+        <div class="detail-label">Directions to Viridian</div>
+        <div class="directions">
+          <div class="direction-item">
+            <div class="direction-icon">🚶</div>
+            <div class="direction-text">
+              <strong>From Hotel Lobby</strong>
+              Take the guestroom elevators (to the right of the floral display) to the 4th floor. Upon exiting, meeting rooms are to the left — Viridian is the third room down the hall.
+            </div>
+          </div>
+          <div class="direction-item">
+            <div class="direction-icon">🅿️</div>
+            <div class="direction-text">
+              <strong>From Parking Garage</strong>
+              Take the garage elevator to the hotel lobby, walk to the guestroom elevators (right of the floral display), then proceed to the 4th floor. Meeting rooms are to the left — Viridian is the third room down the hall.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="detail-block">
+        <div class="detail-label">Valet Parking</div>
+        <div class="valet-box">
+          <div class="detail-text">Pull up to the front drive and let them know you're attending the all-day MarketWise meeting. Use the hosted valet voucher upon departure — gratuity included.</div>
+        </div>
+      </div>
+
+    </div>
   </div>
 
 </div>
 
 <script>
+  function switchTab(name, btn) {
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('tab-' + name).classList.add('active');
+    btn.classList.add('active');
+  }
+
   const canvas = document.getElementById('headerCanvas');
   const ctx = canvas.getContext('2d');
 
@@ -618,7 +786,6 @@
     const h = canvas.height;
     ctx.clearRect(0, 0, w, h);
 
-    // Geometric lines
     ctx.save();
     const lineCount = 8;
     for (let i = 0; i < lineCount; i++) {
